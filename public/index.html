@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Some Title</title>
+  </head>
+
+  <body ng-app="app" ng-controller="MainController">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col col-xs-2"></div>
+          <div class="col-xs-8 ">
+            <form ng-submit="login()">
+              <div class="input-group">
+                <input type="password" class="form-control" placeholder="Master Password" ng-model="password">
+                <span class="input-group-btn">
+                  <button class="btn btn-default btn-success" type="submit"><span class="glyphicon glyphicon-log-in"></span></button>
+                </span>
+              </div><!-- /input-group -->
+            </form>
+      </div> <!-- /.col-xs-8 -->
+        <div class="col col-xs-2"></div>
+      </div><!-- /.row -->
+
+      <div class="row">
+        <div class="col col-xs-2"></div>
+          <div class="col-xs-8 ">
+            <form no-validate>
+              <div class="form-group top-buffer">
+                <label for="website" class="control-label">Website</label>
+                <input type="text" placeholder="Enter a Website" class="form-control" ng-model="website" required>
+              </div>
+              <div class="form-group">
+                <label for="username">Username or Email</label>
+                <input type="text" placeholder="Username / Email" class="form-control" ng-model="username" required>
+              </div>
+              <div class="form-group">
+                <label for="account-password">Password</label>
+                <input type="password" placeholder="Enter Password" class="form-control" ng-model="acctPassword" required>
+              </div>
+              <span class="input-group-btn text-right">
+                <button class="btn btn-default btn-primary" type="button" ng-click="saveInfo()">Save</button>
+              </span>
+            </form>
+          </div>
+        <div class="col col-xs-2"></div>
+        </div>
+    </div> <!-- container end -->
+    <script src="angular.js"></script>
+    <script src="script.js"></script>
+
+  </body>
+</html>
