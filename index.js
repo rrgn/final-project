@@ -63,12 +63,12 @@ app.post('/data', function(request, res) {
   //     console.log('error in save: ', err);
   //     return;
   //   }
-  //   res.send('ok');
+    res.send('ok');
   // });
 });
 
 //retrieve user data
-app.get('/word', function(request, res) {
+app.post('/info', function(request, res) {
   var key = request.body;
   console.log('this is the key:', key);
   User.find(function(err, users) {
@@ -77,14 +77,14 @@ app.get('/word', function(request, res) {
       return;
     }
     var userInfo = users[0].logins;
-    console.log('Users: ', users);
-    console.log('key: ', typeof(key));
+    console.log('Users: ', userInfo);
+    // console.log('key: ', typeof(key));
     // const decipher = crypto.createDecipher('aes192', encPass);
     // var decrypted = decipher.update(info, 'hex', 'utf8');
     // decrypted += decipher.final('utf8');
     // console.log(decrypted);
   });
-  res.send('ok');
+  res.json({status: 'ok'});
 });
 
 app.listen(3030, function() {
