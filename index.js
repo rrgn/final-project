@@ -73,9 +73,10 @@ app.post('/info', function(request, res) {
       var decrypted = decipher.update(data, 'hex', 'utf8');
       decrypted += decipher.final('utf8');
       console.log(decrypted);
+      res.send(decrypted);
     }
   });
-  res.json({status: 'ok'});
+
 });
 
 app.listen(3030, function() {

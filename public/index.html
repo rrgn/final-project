@@ -34,12 +34,37 @@
           </div>
         <div class="col col-xs-2"></div>
       </div>
+      <!-- info space -->
 
+      <div class="row">
+        <div class="col col-xs-2"></div>
+        <div class="col col-xs-8">
+          <div class="table-responsive">
+            <table class="table table-responsive">
+              <thead>
+                <tr>
+                  <th>Website</th>
+                  <th>Username / Email</th>
+                  <th>Password</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{data.website}}</td>
+                  <td>{{data.username}}</td>
+                  <td>{{data.acctPassword}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col col-xs-2"></div>
+      </div>
       <!--form start -->
 
       <div class="row">
         <div class="col col-xs-2"></div>
-          <div class="col-xs-8 ">
+          <div class="col-xs-8">
             <form no-validate>
               <div class="form-group top-buffer">
                 <label for="website" class="control-label">Website</label>

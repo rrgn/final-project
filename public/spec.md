@@ -27,8 +27,9 @@ make a password manager
 
 ### stuff to do
 <!-- 1. save email to DB -->
-2. app.get to get data of a specific user from database
-3. ng-repeat to display on page
+<!-- 2. app.get to get data of a specific user from database -->
+<!-- 3. ng-repeat to specific data to display on page -->
 4. figure out ng-show
 5. break out create account and unlock
 6. make invalid email show on page
+7. add new data for existing user

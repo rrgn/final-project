@@ -8,7 +8,8 @@ app.controller('MainController', function($scope, open, sendData) {
       mPassword: $scope.password
     };
     // var pword = $scope.password;
-    open.openSesame(loginData, function() {
+    open.openSesame(loginData, function(data) {
+      $scope.data = data;
     });
   };
   $scope.saveInfo = function() {
