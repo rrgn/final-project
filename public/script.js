@@ -1,18 +1,19 @@
 var app = angular.module('app', []);
 
 //master password controller
-app.controller('MainController', function($scope, savePass, sendData) {
-  $scope.login = function() {
+app.controller('MainController', function($scope, open, sendData) {
+  $scope.unlock = function() {
     var loginData = {
       email: $scope.email,
       mPassword: $scope.password
     };
     // var pword = $scope.password;
-    savePass.savePassword(loginData, function() {
+    open.openSesame(loginData, function() {
     });
   };
   $scope.saveInfo = function() {
     var userData = {
+      email: $scope.email,
       mPassword: $scope.password,
       data: {
         website: $scope.website,
@@ -26,16 +27,16 @@ app.controller('MainController', function($scope, savePass, sendData) {
 });
 
 
-app.factory('savePass', function($http) {
+app.factory('open', function($http) {
   return {
-    savePassword: function(loginData, callback) {
+    openSesame: function(loginData, callback) {
       // console.log(password);
       var pass = {
         email: loginData.email,
         pass: loginData.mPassword
       };
       console.log(pass);
-      $http.post('/password', pass)
+      $http.post('/info', pass)
       .success(function(data) {
         callback(data);
       });

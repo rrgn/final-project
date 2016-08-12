@@ -9,12 +9,6 @@ var User = require('./user');
 
 mongoose.connect('mongodb://localhost/FlatPass');
 
-// function catchpass(pass) {
-//   encPass = pass;
-//   console.log('inside catchpass: ', encPass);
-//   return encPass;
-// }
-
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(session({
@@ -27,62 +21,59 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // catch password
 app.post('/password', function(request, res) {
   console.log('this is request.body', request.body);
-  var mPass = request.body.pass;
-  // console.log(mPass);
-  // var mPassString = JSON.stringify(mPass);
-  // const cipher = crypto.createCipher('aes192', mPassString);
-  // var encrypted = cipher.update('the bird is the word','utf8', 'hex');
-  // encrypted += cipher.final('hex');
-  // console.log('encrypted: ', encrypted);
-  // catchpass(mPass);
-  // var user = new User({
-  //   nameNpass: encrypted
-  // });
-  // user.save(function(err) {
-  //   if (err) {
-  //     console.log('error in save: ', err.message);
-  //     return;
-  //   }
-  // });
+
   res.send('ok');
 });
 
-// catch data
+// encrypt data and save to DB
 app.post('/data', function(request, res) {
-  var info = request.body;
+  var allData = request.body;
+  var email = request.body.email;
+  var key = request.body.mPassword;
+  var info = request.body.data;
+  console.log('all the data:', allData);
+  console.log('key: ', key);
+  console.log('email: ', email);
   console.log(info);
   var stringInfo = JSON.stringify(info);
-  // const cipher = crypto.createCipher('aes192', encPass);
-  // var encryptedData = cipher.update(stringInfo, 'utf8', 'hex');
-  // console.log('encrypted info sent: ', stringInfo, encryptedData);
-  // var data = new User({
-  //   logins: encryptedData
-  // });
-  // data.save(function(err) {
-  //   if(err) {
-  //     console.log('error in save: ', err);
-  //     return;
-  //   }
-    res.send('ok');
-  // });
+  const cipher = crypto.createCipher('aes192', key);
+  var encryptedData = cipher.update(stringInfo, 'utf8', 'hex');
+  encryptedData += cipher.final('hex');
+  console.log('info sent: ', stringInfo, encryptedData);
+  var data = new User({
+    email: email,
+    logins: encryptedData
+  });
+  data.save(function(err) {
+    if(err) {
+      console.log('error in save: ', err);
+      return;
+    }
+  });
+  res.send('ok');
 });
 
 //retrieve user data
 app.post('/info', function(request, res) {
-  var key = request.body;
+  var info = request.body;
+  console.log('this is info:', info);
+  var key = request.body.pass;
+  var email = request.body.email;
   console.log('this is the key:', key);
-  User.find(function(err, users) {
-    if(err) {
-      console.log(err.message);
+  User.findOne( { email: email }, function(err, user) {
+    if(!user) {
+      // res.json({status: 'fail', message: 'Invalid Email'});
+      console.log('Invalid email address');
       return;
+    } else {
+      console.log('a match was found', user);
+      var data = user.logins;
+      console.log('this is data: ', data, typeof(data));
+      const decipher = crypto.createDecipher('aes192', key);
+      var decrypted = decipher.update(data, 'hex', 'utf8');
+      decrypted += decipher.final('utf8');
+      console.log(decrypted);
     }
-    var userInfo = users[0].logins;
-    console.log('Users: ', userInfo);
-    // console.log('key: ', typeof(key));
-    // const decipher = crypto.createDecipher('aes192', encPass);
-    // var decrypted = decipher.update(info, 'hex', 'utf8');
-    // decrypted += decipher.final('utf8');
-    // console.log(decrypted);
   });
   res.json({status: 'ok'});
 });
