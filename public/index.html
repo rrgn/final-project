@@ -17,7 +17,7 @@
       </div>
       <div class="row">
         <div class="col col-xs-2"></div>
-          <div class="col-xs-8 ">
+          <div class="col-xs-8">
             <form>
               <div class="form-group">
                 <label for="username">Email</label>
@@ -27,19 +27,23 @@
                 <label for="Master Password">Password</label>
                 <input type="password" placeholder="Enter Password" class="form-control" ng-model="password" required>
               </div>
+              <span class="input-group-btn text-left">
+                <button class="btn btn-default btn-primary" type="button" ng-click="create()">Create</button>
+              </span>
               <span class="input-group-btn text-right">
                 <button class="btn btn-default btn-primary" type="button" ng-click="unlock()">Unlock</button>
               </span>
             </form>
+
           </div>
         <div class="col col-xs-2"></div>
       </div>
-      <!-- info space -->
 
+      <!-- user login space -->
       <div class="row">
         <div class="col col-xs-2"></div>
         <div class="col col-xs-8">
-          <div class="table-responsive">
+          <div class="table-responsive" ng-show="showTable">
             <table class="table table-responsive">
               <thead>
                 <tr>
@@ -48,31 +52,36 @@
                   <th>Password</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody ng-repeat="x in data">
                 <tr>
-                  <td>{{data.website}}</td>
-                  <td>{{data.username}}</td>
-                  <td>{{data.acctPassword}}</td>
+                  <td>{{x.website}}</td>
+                  <td>{{x.username}}</td>
+                  <td>{{x.acctPassword}}</td>
                 </tr>
               </tbody>
             </table>
+            <span class="input-group-btn text-center">
+              <button class="btn btn-default btn-primary" type="button" ng-click="toggleAddAccount()">Add Account</button>
+            </span>
+            <hr>
           </div>
         </div>
         <div class="col col-xs-2"></div>
       </div>
-      <!--form start -->
 
+      <!--add login form start -->
       <div class="row">
         <div class="col col-xs-2"></div>
-          <div class="col-xs-8">
+          <div class="col-xs-8" ng-show="showForm">
+            <h4 class="text-center">Enter login details and hit save</h4>
             <form no-validate>
               <div class="form-group top-buffer">
                 <label for="website" class="control-label">Website</label>
-                <input type="text" placeholder="Enter a Website" class="form-control" ng-model="website" required>
+                <input type="text" placeholder="Enter the URL for a website" class="form-control" ng-model="website" required>
               </div>
               <div class="form-group">
                 <label for="username">Username or Email</label>
-                <input type="text" placeholder="Username / Email" class="form-control" ng-model="username" required>
+                <input type="text" placeholder="Enter the Username or Email used for that site" class="form-control" ng-model="username" required>
               </div>
               <div class="form-group">
                 <label for="account-password">Password</label>

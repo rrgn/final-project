@@ -25,6 +25,33 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //   res.send('ok');
 // });
 
+//retrieve user data via unlock button
+app.post('/info', function(request, res) {
+  var info = request.body;
+  console.log('this is info:', info);
+  var key = request.body.pass;
+  var email = request.body.email;
+  console.log('this is the key:', key);
+  User.findOne( { email: email }, function(err, user) {
+    if(!user) {
+      console.log('Email not found');
+      res.json({status: 'fail', message: 'Email not found'});
+      return;
+    } else {
+      console.log('a match was found', user);
+      var data = user.logins;
+      console.log('this is data: ', data, typeof(data));
+      // res.send('ok');
+      console.log('about to decrypt', data);
+      const decipher = crypto.createDecipher('aes192', key);
+      var decrypted = decipher.update(data, 'hex', 'utf8');
+      decrypted += decipher.final('utf8');
+      console.log('the decrypted data', decrypted);
+      res.send(decrypted);
+    }
+  });
+});
+
 // encrypt data and save to DB via save button
 app.post('/data', function(request, res) {
   var allData = request.body;
@@ -35,81 +62,72 @@ app.post('/data', function(request, res) {
   console.log('key: ', key);
   console.log('email: ', email);
   console.log(info);
+
   User.findOne( {email: email}, function(err, user) {
-    if (user) {
-      console.log('found user');
+    if(user) {
       var data = user.logins;
-      console.log('this is data: ', data, typeof(data));
+      console.log('found user', 'this is the data:', data, typeof(data));
       const decipher = crypto.createDecipher('aes192', key);
       var decrypted = decipher.update(data, 'hex', 'utf8');
       decrypted += decipher.final('utf8');
-      console.log(decrypted);
-      var unstring = JSON.parse(decrypted);
-      console.log(unstring);
-      var arrLogins = [];
-      arrLogins.push(unstring, info);
-      console.log(arrLogins);
-      var arrLoginsString = JSON.stringify(arrLogins);
-      console.log(arrLoginsString);
+      console.log('this is the decrypted data: ', decrypted, typeof(decrypted));
+      var reverseString = JSON.parse(decrypted);
+      console.log('this is reverseString: ', reverseString, 'type of reverseString: ', typeof(reverseString));
+      res.send('ok');
+    } else {
+      var stringInfo = JSON.stringify([info]);
+      console.log('this is the object in string format: ', stringInfo);
       const cipher = crypto.createCipher('aes192', key);
-      var encryptedData = cipher.update(arrLoginsString, 'utf8', 'hex');
+      var encryptedData = cipher.update(stringInfo, 'utf8', 'hex');
       encryptedData += cipher.final('hex');
-      console.log('info sent: ', arrLoginsString, encryptedData);
-      // User.update(
-      //   { email: email },
-      //   {$set: { logins: encryptedData} },
-      //   function(err, msg) {
-      //     if (err) {
-      //       console.error(err.message);
-      //       return;
-      //     }
-      //     console.log('update successful', msg);
-      //   });
-
-      // code below this is for save new user - DONT DELETE!
-
-      // var data = new User({
-      //   email: email,
-      //   logins: encryptedData
-      // });
-      // data.save(function(err) {
-      //   if(err) {
-      //     console.log('error in save: ', err);
-      //     return;
-      //   }
-      // });
+      console.log('this is object encrypted: ', encryptedData);
+      res.send('ok');
     }
   });
 
-
-  res.send('ok');
+  // User.update(
+  //   { email: email},
+  //   {$set: {logins: encryptedData} },
+  //   function(err, msg) {
+  //     if(err) {
+  //       console.error(err.message);
+  //       res.json({ status: 'fail', message: 'couldn\'t save data'});
+  //       return;
+  //     } else {
+  //       console.log('save successful');
+  //       res.json({ status: 'ok'});
+  //     }
+  //   }
+  // );
 });
 
-//retrieve user data via unlock button
-app.post('/info', function(request, res) {
+app.post('/create', function(request, res) {
   var info = request.body;
-  console.log('this is info:', info);
-  var key = request.body.pass;
   var email = request.body.email;
-  console.log('this is the key:', key);
-  User.findOne( { email: email }, function(err, user) {
-    if(!user) {
-      // res.json({status: 'fail', message: 'Invalid Email'});
-      console.log('Invalid email address');
+  console.log(info);
+  User.findOne( { email: email}, function(err, person) {
+    if (person) {
+      console.log('email address already exists');
+      res.json({status: 'fail', message: 'email address already exists'});
       return;
     } else {
-      console.log('a match was found', user);
-      var data = user.logins;
-      console.log('this is data: ', data, typeof(data));
-      console.log('about to decrypt', data);
-      const decipher = crypto.createDecipher('aes192', key);
-      var decrypted = decipher.update(data, 'hex', 'utf8');
-      decrypted += decipher.final('utf8');
-      console.log('the decrypted data', decrypted);
-      res.send(decrypted);
+      var user = new User({
+        email: email,
+        logins: 'none'
+      });
+      console.log('this is a user:', user);
+      user.save(function(err) {
+        if(err) {
+          console.log('error in save: ', err);
+          res.json({status: 'fail', message: 'error in save'});
+          return;
+        } else {
+          console.log('saved');
+          res.send('ok');
+        }
+      });
     }
   });
-
 });
 
 app.listen(3030, function() {

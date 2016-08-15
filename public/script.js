@@ -1,17 +1,32 @@
 var app = angular.module('app', []);
 
 //master password controller
-app.controller('MainController', function($scope, open, sendData) {
+app.controller('MainController', function($scope, open, sendData, $http) {
   $scope.unlock = function() {
     var loginData = {
       email: $scope.email,
       mPassword: $scope.password
     };
-    // var pword = $scope.password;
     open.openSesame(loginData, function(data) {
       $scope.data = data;
+      console.log(data);
     });
+    // $scope.showForm = true;
+    $scope.showTable = true;
   };
+
+  $scope.create = function() {
+    var createData = {
+      email: $scope.email,
+      mPassword: $scope.password
+    };
+    console.log(createData);
+    $http.post('/create', createData).then(function(data) {
+      console.log(data);
+    });
+    $scope.showForm = true;
+  };
+
   $scope.saveInfo = function() {
     var userData = {
       email: $scope.email,
@@ -24,6 +39,11 @@ app.controller('MainController', function($scope, open, sendData) {
     };
     sendData.userInfo(userData);
     console.log('clicked the save button', userData);
+    $scope.showForm = false;
+  };
+
+  $scope.toggleAddAccount = function() {
+    $scope.showForm = true;
   };
 });
 
