@@ -6,4 +6,25 @@
   font-size: 200px;
   margin-bottom: 10%;
   color: #3498DB;
+  /*color: white;*/
+}
+
+.jumbotron {
+  background-color: #3498DB;
+}
+
+table thead th {
+  color: grey;
+}
+
+table tbody td {
+  color: #3498DB;
+}
+
+form label {
+  color: grey;
+}
+
+h1, h4 {
+  color: grey;
 }

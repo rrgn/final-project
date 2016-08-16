@@ -37,13 +37,20 @@ app.controller('MainController', function($scope, open, sendData, $http) {
         acctPassword: $scope.acctPassword
       }
     };
-    sendData.userInfo(userData);
+    sendData.userInfo(userData).success(function() {
+      $scope.unlock();
+    });
     console.log('clicked the save button', userData);
+
     $scope.showForm = false;
+
   };
 
   $scope.toggleAddAccount = function() {
     $scope.showForm = true;
+    $scope.website = '';
+    $scope.username = '';
+    $scope.acctPassword = '';
   };
 });
 

@@ -12,6 +12,7 @@
       <div class="row">
         <div class="col col xs-12 text-center">
           <h1>Flat Pass</h1>
+          <br>
           <span class="glyphicon glyphicon-lock lock"></span>
         </div>
       </div>
@@ -33,13 +34,14 @@
               <span class="input-group-btn text-right">
                 <button class="btn btn-default btn-primary" type="button" ng-click="unlock()">Unlock</button>
               </span>
+              <hr>
             </form>
 
           </div>
         <div class="col col-xs-2"></div>
       </div>
 
-      <!-- user login space -->
+      <!-- user login data -->
       <div class="row">
         <div class="col col-xs-2"></div>
         <div class="col col-xs-8">
@@ -52,11 +54,11 @@
                   <th>Password</th>
                 </tr>
               </thead>
-              <tbody ng-repeat="x in data">
+              <tbody ng-repeat="thing in data">
                 <tr>
-                  <td>{{x.website}}</td>
-                  <td>{{x.username}}</td>
-                  <td>{{x.acctPassword}}</td>
+                  <td>{{thing.website}}</td>
+                  <td>{{thing.username}}</td>
+                  <td>{{thing.acctPassword}}</td>
                 </tr>
               </tbody>
             </table>
@@ -90,6 +92,7 @@
               <span class="input-group-btn text-right">
                 <button class="btn btn-default btn-primary" type="button" ng-click="saveInfo()">Save</button>
               </span>
+              <hr>
             </form>
           </div>
         <div class="col col-xs-2"></div>

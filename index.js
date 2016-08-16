@@ -42,12 +42,17 @@ app.post('/info', function(request, res) {
       var data = user.logins;
       console.log('this is data: ', data, typeof(data));
       // res.send('ok');
-      console.log('about to decrypt', data);
-      const decipher = crypto.createDecipher('aes192', key);
-      var decrypted = decipher.update(data, 'hex', 'utf8');
-      decrypted += decipher.final('utf8');
-      console.log('the decrypted data', decrypted);
-      res.send(decrypted);
+      if (data !== 'none') {
+        console.log('about to decrypt', data);
+        const decipher = crypto.createDecipher('aes192', key);
+        var decrypted = decipher.update(data, 'hex', 'utf8');
+        decrypted += decipher.final('utf8');
+        console.log('the decrypted data in /info', decrypted);
+        res.send(decrypted);
+      } else {
+        console.log('something something');
+        res.send('ok');
+      }
     }
   });
 });
@@ -64,25 +69,62 @@ app.post('/data', function(request, res) {
   console.log(info);
 
   User.findOne( {email: email}, function(err, user) {
-    if(user) {
       var data = user.logins;
-      console.log('found user', 'this is the data:', data, typeof(data));
-      const decipher = crypto.createDecipher('aes192', key);
-      var decrypted = decipher.update(data, 'hex', 'utf8');
-      decrypted += decipher.final('utf8');
-      console.log('this is the decrypted data: ', decrypted, typeof(decrypted));
-      var reverseString = JSON.parse(decrypted);
-      console.log('this is reverseString: ', reverseString, 'type of reverseString: ', typeof(reverseString));
-      res.send('ok');
-    } else {
-      var stringInfo = JSON.stringify([info]);
-      console.log('this is the object in string format: ', stringInfo);
-      const cipher = crypto.createCipher('aes192', key);
-      var encryptedData = cipher.update(stringInfo, 'utf8', 'hex');
-      encryptedData += cipher.final('hex');
-      console.log('this is object encrypted: ', encryptedData);
-      res.send('ok');
-    }
+      console.log('found user', 'this is the data inside /data:', data, typeof(data));
+      if(data !== 'none') {
+        //decrypt data
+        const decipher = crypto.createDecipher('aes192', key);
+        var decrypted = decipher.update(data, 'hex', 'utf8');
+        decrypted += decipher.final('utf8');
+        console.log('this is the decrypted data in /data: ', decrypted, typeof(decrypted));
+        var reverseString = JSON.parse(decrypted);
+        console.log('this is reverseString: ', reverseString, 'type of reverseString: ', typeof(reverseString));
+        reverseString.push(info);
+        StringAgain = JSON.stringify(reverseString);
+        console.log('this is StringAgain: ', StringAgain);
+        const cipher = crypto.createCipher('aes192', key);
+        var encryptedData = cipher.update(StringAgain, 'utf8', 'hex');
+        encryptedData += cipher.final('hex');
+        console.log('this is encryptedData inside of /info: ', encryptedData);
+        User.update(
+          { email: email },
+          { $set: {logins: encryptedData} },
+          function(err, msg) {
+            if(err) {
+              console.log('error');
+              res.json({ status: 'fail', message: 'error saving data'});
+              return;
+            } else {
+              console.log('save successful');
+              res.json({ status: 'ok', message: 'save successful'});
+            }
+          }
+        );
+        
+
+
+      } else {
+        var stringInfo = JSON.stringify([info]);
+        console.log('this is the object in string format: ', stringInfo);
+        const cipher = crypto.createCipher('aes192', key);
+        var encryptedData = cipher.update(stringInfo, 'utf8', 'hex');
+        encryptedData += cipher.final('hex');
+        console.log('this is object encrypted: ', encryptedData);
+        User.update(
+          { email: email },
+          { $set: {logins: encryptedData} },
+          function(err, msg) {
+            if(err) {
+              console.log('error');
+              res.json({ status: 'fail', message: 'error saving data'});
+              return;
+            } else {
+              console.log('save successful');
+              res.json({ status: 'ok', message: 'save successful'});
+            }
+          }
+        );
+      }
   });
 
   // User.update(
