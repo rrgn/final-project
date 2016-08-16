@@ -50,7 +50,7 @@ app.post('/info', function(request, res) {
         console.log('the decrypted data in /info', decrypted);
         res.send(decrypted);
       } else {
-        
+
         res.send('ok');
       }
     }
@@ -100,9 +100,6 @@ app.post('/data', function(request, res) {
             }
           }
         );
-
-
-
       } else {
         var stringInfo = JSON.stringify([info]);
         console.log('this is the object in string format: ', stringInfo);
@@ -131,11 +128,11 @@ app.post('/data', function(request, res) {
 app.post('/create', function(request, res) {
   var info = request.body;
   var email = request.body.email;
-  console.log(info);
+  // console.log(info);
   User.findOne( { email: email}, function(err, person) {
     if (person) {
       console.log('email address already exists');
-      res.json({status: 'fail', message: 'email address already exists'});
+      res.status(409).json({status: 'fail', message: 'email address already exists'});
       return;
     } else {
       var user = new User({
@@ -146,7 +143,7 @@ app.post('/create', function(request, res) {
       user.save(function(err) {
         if(err) {
           console.log('error in save: ', err);
-          res.json({status: 'fail', message: 'error in save'});
+          res.status(501).json({status: 'fail', message: 'error in save'});
           return;
         } else {
           console.log('saved');

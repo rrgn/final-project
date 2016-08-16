@@ -26,15 +26,26 @@ make a password manager
 <!-- 4. figure out ng-show -->
 <!-- 5. break out create account and unlock -->
 1. make page scroll
-2. form validation
+<!-- 2. form validation -->
 
-1. make invalid email show on page
+<!-- 1. make invalid email show on page -->
+1. invalid key provided for decrypt bad decrypt error - show on page when wrong key is provided, crashes server figure out how to reset
+<!-- 2. on page reload, hidden divs show up -->
 <!-- 2. add account has already been clicked, when another account is added, doesn't call $scope.unlock -->
 <!-- 2. add new data for existing user -->
 <!-- 3. when create button is hit and email already exists, showForm should not show up -->
-3. make even table rows have background color
+2. make even table rows have background color
 <!-- 4. reset $scope fields in form when save is hit. -->
 <!-- 5. error when a user exists and unlock is clicked, but logins in db is none. figure out if statement logic -->
-5. form validation
-6. bad decrypt error - show on page when wrong key is provided
-7. add delete function on logins table
+<!-- 5. form validation -->
+3. add delete function on logins table
+
+mongodb / mongoose
+express
+angularjs
+  ng-cloak
+node.js
+
+html
+css
+javascript

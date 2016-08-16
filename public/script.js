@@ -1,15 +1,19 @@
 var app = angular.module('app', []);
 
 //master password controller
-app.controller('MainController', function($scope, open, sendData, $http) {
+app.controller('MainController', function($scope, open, sendData, $http, $timeout) {
   $scope.unlock = function() {
     var loginData = {
       email: $scope.email,
       mPassword: $scope.password
     };
-    open.openSesame(loginData, function(data) {
+    open.openSesame(loginData).success(function(data) {
       $scope.data = data;
       console.log(data);
+    }).error(function(error) {
+      $scope.invalidKey = 'Invalid Password, Please refresh browser';
+      $scope.showErrorKey = true;
+      console.log('error', $scope.invalidKey);
     });
     $scope.showTable = true;
   };
@@ -20,10 +24,21 @@ app.controller('MainController', function($scope, open, sendData, $http) {
       mPassword: $scope.password
     };
     console.log(createData);
-    $http.post('/create', createData).then(function(data) {
-      console.log(data);
+    $http.post('/create', createData).success(function(data) {
+      // console.log(data);
+      $scope.showForm = true;
+    }).error(function(error) {
+      console.log('this is error', error);
+      $scope.error = error;
+      var status = error.status;
+      if(status === 'fail') {
+        $scope.showForm = false;
+        $scope.showError = true;
+        $timeout(function() {
+          $scope.showError = false;
+        }, 2500);
+      }
     });
-    $scope.showForm = true;
   };
 
   $scope.saveInfo = function() {
@@ -53,19 +68,20 @@ app.controller('MainController', function($scope, open, sendData, $http) {
 });
 
 
+
 app.factory('open', function($http) {
   return {
-    openSesame: function(loginData, callback) {
+    openSesame: function(loginData) {
       // console.log(password);
       var pass = {
         email: loginData.email,
         pass: loginData.mPassword
       };
       console.log(pass);
-      $http.post('/info', pass)
-      .success(function(data) {
-        callback(data);
-      });
+      return $http.post('/info', pass);
+      // .success(function(data) {
+      //   callback(data);
+      // });
     }
   };
 });
