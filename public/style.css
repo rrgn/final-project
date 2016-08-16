@@ -28,3 +28,18 @@ form label {
 h1, h4 {
   color: grey;
 }
+
+.outline-button {
+  color: #3498DB;
+  border-color: #3498DB;
+}
+
+.outline-button:hover {
+  color: white;
+  background-color: #3498DB;
+  border-color: #3498DB;
+}
+
+input, select, textarea {
+  color: #3498DB;
+}

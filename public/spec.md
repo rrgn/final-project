@@ -25,6 +25,8 @@ make a password manager
   b. make else statement that saves when no user is matched -->
 <!-- 4. figure out ng-show -->
 <!-- 5. break out create account and unlock -->
+1. make page scroll
+2. form validation
 
 1. make invalid email show on page
 <!-- 2. add account has already been clicked, when another account is added, doesn't call $scope.unlock -->

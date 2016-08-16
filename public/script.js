@@ -11,7 +11,6 @@ app.controller('MainController', function($scope, open, sendData, $http) {
       $scope.data = data;
       console.log(data);
     });
-    // $scope.showForm = true;
     $scope.showTable = true;
   };
 
@@ -41,7 +40,6 @@ app.controller('MainController', function($scope, open, sendData, $http) {
       $scope.unlock();
     });
     console.log('clicked the save button', userData);
-
     $scope.showForm = false;
 
   };

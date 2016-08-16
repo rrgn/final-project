@@ -50,7 +50,7 @@ app.post('/info', function(request, res) {
         console.log('the decrypted data in /info', decrypted);
         res.send(decrypted);
       } else {
-        console.log('something something');
+        
         res.send('ok');
       }
     }
@@ -100,7 +100,7 @@ app.post('/data', function(request, res) {
             }
           }
         );
-        
+
 
 
       } else {
@@ -126,21 +126,6 @@ app.post('/data', function(request, res) {
         );
       }
   });
-
-  // User.update(
-  //   { email: email},
-  //   {$set: {logins: encryptedData} },
-  //   function(err, msg) {
-  //     if(err) {
-  //       console.error(err.message);
-  //       res.json({ status: 'fail', message: 'couldn\'t save data'});
-  //       return;
-  //     } else {
-  //       console.log('save successful');
-  //       res.json({ status: 'ok'});
-  //     }
-  //   }
-  // );
 });
 
 app.post('/create', function(request, res) {
