@@ -34,7 +34,7 @@
                 <label for="Master Password">Password</label>
                 <input type="password" placeholder="Enter Password" class="form-control" ng-model="password" required/>
               </div>
-              <div class="alert alert-danger" ng-show="showErrorKey">{{invalidKey}}</div>
+              <div class="alert alert-danger" ng-show="showErrorKey">{{message}}</div>
               <span class="input-group-btn text-left">
                 <button class="btn btn-default outline-button" type="button" ng-click="create()">Create</button>
               </span>
@@ -61,7 +61,7 @@
                   <th>Password</th>
                 </tr>
               </thead>
-              <tbody ng-repeat="thing in data">
+              <tbody ng-repeat="thing in data track by $index">
                 <tr>
                   <td>{{thing.website}}</td>
                   <td>{{thing.username}}</td>

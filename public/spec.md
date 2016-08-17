@@ -30,7 +30,7 @@ make a password manager
 <!-- 2. form validation -->
 
 <!-- 1. make invalid email show on page -->
-1. invalid key provided for decrypt bad decrypt error, crashes server figure out how to reset
+<!-- 1. invalid key provided for decrypt bad decrypt error, crashes server figure out how to reset -->
 <!-- 2. on page reload, hidden divs show up -->
 <!-- 2. add account has already been clicked, when another account is added, doesn't call $scope.unlock -->
 <!-- 2. add new data for existing user -->
@@ -46,7 +46,8 @@ make a password manager
 mongodb / mongoose
 express
 angularjs
-  ng-cloak
+  ng-cloak - used to cloak hidden ng-show elements when page refreshes
+  ng-repeat track by $index - resolves error unlocking with no data to display in the table
 node.js
 
 html

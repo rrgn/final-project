@@ -10,12 +10,20 @@ app.controller('MainController', function($scope, open, sendData, $http, $timeou
     open.openSesame(loginData).success(function(data) {
       $scope.data = data;
       console.log(data);
+      if (data === 'no data to show') {
+        $scope.showTable = false;
+      } else {
+        $scope.showTable = true;
+      }
     }).error(function(error) {
-      $scope.invalidKey = 'Invalid Password, Please refresh browser';
+      $scope.message = error.message;
       $scope.showErrorKey = true;
-      console.log('error', $scope.invalidKey);
+      console.log('error', $scope.message);
+      $timeout(function() {
+        $scope.showErrorKey = false;
+      }, 2500);
+      $scope.showTable = false;
     });
-    $scope.showTable = true;
   };
 
   $scope.create = function() {
