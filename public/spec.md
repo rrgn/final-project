@@ -14,6 +14,7 @@ make a password manager
 2. multi-platform support?
 3. two factor authentication?
 4. master key + account key to be able to do anything with the data stored inside the vault.
+5. fix table behavior in mobile view
 
 
 ### stuff to do
@@ -29,7 +30,7 @@ make a password manager
 <!-- 2. form validation -->
 
 <!-- 1. make invalid email show on page -->
-1. invalid key provided for decrypt bad decrypt error - show on page when wrong key is provided, crashes server figure out how to reset
+1. invalid key provided for decrypt bad decrypt error, crashes server figure out how to reset
 <!-- 2. on page reload, hidden divs show up -->
 <!-- 2. add account has already been clicked, when another account is added, doesn't call $scope.unlock -->
 <!-- 2. add new data for existing user -->
@@ -39,6 +40,8 @@ make a password manager
 <!-- 5. error when a user exists and unlock is clicked, but logins in db is none. figure out if statement logic -->
 <!-- 5. form validation -->
 3. add delete function on logins table
+4. record video
+5. make readme
 
 mongodb / mongoose
 express
