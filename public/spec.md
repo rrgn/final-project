@@ -26,9 +26,9 @@ make a password manager
   b. make else statement that saves when no user is matched -->
 <!-- 4. figure out ng-show -->
 <!-- 5. break out create account and unlock -->
-1. make page scroll
+<!-- 1. make page scroll -->
 <!-- 2. form validation -->
-
+1. improve form validation.
 <!-- 1. make invalid email show on page -->
 <!-- 1. invalid key provided for decrypt bad decrypt error, crashes server figure out how to reset -->
 <!-- 2. on page reload, hidden divs show up -->

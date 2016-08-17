@@ -36,10 +36,10 @@
               </div>
               <div class="alert alert-danger" ng-show="showErrorKey">{{message}}</div>
               <span class="input-group-btn text-left">
-                <button class="btn btn-default outline-button" type="button" ng-click="create()">Create</button>
+                <button class="btn btn-default outline-button-primary" type="button" ng-click="create()">Create</button>
               </span>
               <span class="input-group-btn text-right">
-                <button class="btn btn-default outline-button" type="submit" ng-click="unlock()">Unlock</button>
+                <button class="btn btn-default outline-button-primary" type="submit" ng-click="unlock()">Unlock</button>
               </span>
             </form>
           </div>
@@ -52,7 +52,7 @@
         <div class="col col-xs-8">
           <div class="table-responsive" ng-show="showTable">
             <hr>
-
+            <a id="middle"></a>
             <table class="table table-responsive">
               <thead>
                 <tr>
@@ -69,9 +69,16 @@
                 </tr>
               </tbody>
             </table>
+
             <span class="input-group-btn text-center">
-              <button class="btn btn-default outline-button btn-block" type="button" ng-click="toggleAddAccount()">Add Account</button>
+              <button class="btn btn-default outline-button-primary btn-block" type="button" ng-click="toggleAddAccount()">Add Account</button>
             </span>
+            <br>
+            <span class="input-group-btn text-center">
+              <button class="btn btn-default outline-button-danger btn-block" type="submit" ng-click="reload()">NUKE!</button>
+            </span>
+            <br>
+            <p class="text-center nuke-text">(Don't worry, <span class="nuke-in-span">NUKE!</span> will not delete your data...go ahead we know you want to press it 😋)</p>
             <hr>
           </div>
         </div>
@@ -97,12 +104,13 @@
                 <input type="password" placeholder="Enter Password" class="form-control" ng-model="acctPassword" required/>
               </div>
               <span class="input-group-btn text-right">
-                <button class="btn btn-default outline-button" type="submit" ng-click="saveInfo()">Save</button>
+                <button class="btn btn-default outline-button-primary" type="submit" ng-click="saveInfo()">Save</button>
               </span>
               <hr>
             </form>
           </div>
         <div class="col col-xs-2"></div>
+        <a id="bottom"></a>
         </div>
     </div> <!-- container end -->
     <script src="jquery.js"></script>

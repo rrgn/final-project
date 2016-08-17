@@ -1,7 +1,8 @@
 var app = angular.module('app', []);
 
 //master password controller
-app.controller('MainController', function($scope, open, sendData, $http, $timeout) {
+app.controller('MainController', function($scope, open, sendData, $http, $timeout, $window, $location, $anchorScroll) {
+  $location.hash('');
   $scope.unlock = function() {
     var loginData = {
       email: $scope.email,
@@ -14,6 +15,8 @@ app.controller('MainController', function($scope, open, sendData, $http, $timeou
         $scope.showTable = false;
       } else {
         $scope.showTable = true;
+        $location.hash('middle');
+        $anchorScroll();
       }
     }).error(function(error) {
       $scope.message = error.message;
@@ -59,6 +62,8 @@ app.controller('MainController', function($scope, open, sendData, $http, $timeou
         acctPassword: $scope.acctPassword
       }
     };
+    $location.hash('middle');
+    $anchorScroll();
     sendData.userInfo(userData).success(function() {
       $scope.unlock();
     });
@@ -67,11 +72,24 @@ app.controller('MainController', function($scope, open, sendData, $http, $timeou
 
   };
 
+  // $scope.scrollTo = function(id) {
+  //   var old = $location.hash();
+  //   $location.hash(id);
+  //   $anchorScroll();
+  //   $location.hash(old);
+  // };
+
   $scope.toggleAddAccount = function() {
     $scope.showForm = true;
     $scope.website = '';
     $scope.username = '';
     $scope.acctPassword = '';
+    $location.hash('bottom');
+    $anchorScroll();
+  };
+
+  $scope.reload = function() {
+    $window.location.reload();
   };
 });
 

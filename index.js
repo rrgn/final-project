@@ -36,12 +36,19 @@ app.post('/info', function(request, res) {
       // res.send('ok');
       if (data !== 'none') {
         // console.log('about to decrypt', data);
-        const decipher = crypto.createDecipher('aes192', key);
-        var decrypted = decipher.update(data, 'hex', 'utf8');
-        decrypted += decipher.final('utf8');
-        // console.log('the decrypted data in /info', decrypted);
-        res.send(decrypted);
-        // res.status(403).json( { status: 'fail', message: 'incorrect email or password'});
+        try {
+          // console.log('this is crypto decipher: ', crypto.createDecipher('aes192', key));
+          // throw crypto.createDecipher('aes192', key);
+          const decipher = crypto.createDecipher('aes192', key);
+          // console.log('_handle ', decipher._handle);
+          var decrypted = decipher.update(data, 'hex', 'utf8');
+          // console.log('this is decrypted: ', decrypted);
+          decrypted += decipher.final('utf8');
+          // console.log('the decrypted data in /info', decrypted);
+          res.send(decrypted);
+        } catch(error) {
+          res.status(403).json( { status: 'fail', message: 'incorrect email or password', error: error});
+        }
       } else {
         res.send('no data to show');
       }

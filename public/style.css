@@ -29,19 +29,34 @@ h1, h4 {
   color: grey;
 }
 
-.outline-button {
+.outline-button-primary {
   color: #3498DB;
   border-color: #3498DB;
 }
 
-.outline-button:hover {
+.outline-button-primary:hover {
   color: white;
   background-color: #3498DB;
   border-color: #3498DB;
 }
 
-input, select, textarea {
-  color: #3498DB;
+.outline-button-danger {
+  color: #E74C3C;
+  border-color: #E74C3C;
+}
+
+.outline-button-danger:hover {
+  color: white;
+  background-color: #E74C3C;
+  border-color: #E74C3C;
+}
+
+.nuke-text {
+  color: grey;
+}
+
+.nuke-in-span {
+  color: #E74C3C;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
