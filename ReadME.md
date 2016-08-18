@@ -34,8 +34,12 @@ A web-based password manager that saves your data. Built using the MEAN stack, a
 * [Regan Co](https://github.com/rrgn)
 
 ## Screenshots
+
+### Unlock
 ![unlock](https://github.com/rrgn/final-project/blob/master/flat-pass-1.png)
+### Data Table
 ![data table](https://github.com/rrgn/final-project/blob/master/flat-pass-2.png)
+### Add Account
 ![add account](https://github.com/rrgn/final-project/blob/master/flat-pass-3.png)
 
 
