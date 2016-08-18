@@ -15,7 +15,7 @@ app.controller('MainController', function($scope, open, sendData, $http, $timeou
         $scope.showTable = false;
       } else {
         $scope.showTable = true;
-        $location.hash('middle');
+        $location.hash('bottom');
         $anchorScroll();
       }
     }).error(function(error) {
@@ -38,6 +38,8 @@ app.controller('MainController', function($scope, open, sendData, $http, $timeou
     $http.post('/create', createData).success(function(data) {
       // console.log(data);
       $scope.showForm = true;
+      $location.hash('bottom');
+      anchorScroll();
     }).error(function(error) {
       console.log('this is error', error);
       $scope.error = error;
@@ -72,19 +74,12 @@ app.controller('MainController', function($scope, open, sendData, $http, $timeou
 
   };
 
-  // $scope.scrollTo = function(id) {
-  //   var old = $location.hash();
-  //   $location.hash(id);
-  //   $anchorScroll();
-  //   $location.hash(old);
-  // };
-
   $scope.toggleAddAccount = function() {
     $scope.showForm = true;
     $scope.website = '';
     $scope.username = '';
     $scope.acctPassword = '';
-    $location.hash('bottom');
+    $location.hash('middle');
     $anchorScroll();
   };
 

@@ -3,6 +3,7 @@
 }
 
 .lock {
+  margin-top: 7%;
   font-size: 200px;
   margin-bottom: 2%;
   color: #3498DB;
@@ -14,7 +15,7 @@
 }
 
 table thead th {
-  color: grey;
+  color: #95A5A6;
 }
 
 table tbody td {
@@ -22,11 +23,11 @@ table tbody td {
 }
 
 form label {
-  color: grey;
+  color: #95A5A6;
 }
 
-h1, h4 {
-  color: grey;
+h1, h4, h5 {
+  color: #95A5A6;
 }
 
 .outline-button-primary {
@@ -38,6 +39,28 @@ h1, h4 {
   color: white;
   background-color: #3498DB;
   border-color: #3498DB;
+}
+
+.outline-button-secondary {
+  color: #2ECC71;
+  border-color: #2ECC71;
+}
+
+.outline-button-secondary:hover {
+  color: white;
+  background-color: #2ECC71;
+  border-color: #2ECC71;
+}
+
+.outline-button-alternate {
+  color: #E67E22;
+  border-color: #E67E22;
+}
+
+.outline-button-alternate:hover {
+  color: white;
+  background-color: #F1C40F;
+  border-color: #F1C40F;
 }
 
 .outline-button-danger {
@@ -52,11 +75,23 @@ h1, h4 {
 }
 
 .nuke-text {
-  color: grey;
+  color: #95A5A6;
 }
 
 .nuke-in-span {
   color: #E74C3C;
+}
+
+.blue-text {
+  color: #3498DB;
+}
+
+.orange-text {
+  color: #E67E22;
+}
+
+.light-grey-text {
+  color: #ECF0F1
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {

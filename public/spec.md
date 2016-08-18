@@ -41,13 +41,17 @@ make a password manager
 <!-- 5. form validation -->
 3. add delete function on logins table
 4. record video
-5. make readme
+5. when a user has and account but has no data to show in the table, add prompt to let user know there is no data. (form is submitting but not prompt is shown)
+6. when add account is hit, make cursor focus on 1st input fields7
+7. host to have a live link
+<!-- 7. save button scrollling fix when a new account is created and a first login is entered -->
 
 mongodb / mongoose
 express
 angularjs
   ng-cloak - used to cloak hidden ng-show elements when page refreshes
   ng-repeat track by $index - resolves error unlocking with no data to display in the table
+  $anchorScroll - handles page scrolling
 node.js
 
 html

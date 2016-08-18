@@ -1,7 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
 const crypto = require('crypto');
-var session = require('express-session');
 var app = express();
 var bodyParser = require('body-parser');
 var User = require('./user');
@@ -10,11 +9,6 @@ mongoose.connect('mongodb://localhost/FlatPass');
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true
-}));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //retrieve user data via unlock button

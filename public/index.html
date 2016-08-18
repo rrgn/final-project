@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <script src="angular.js"></script>
-    <title>Some Title</title>
+    <title>Flat Pass</title>
   </head>
 
   <body ng-app="app" ng-controller="MainController" ng-cloak>
@@ -14,7 +14,8 @@
         <div class="col col xs-12 text-center">
           <br>
           <span class="glyphicon glyphicon-lock lock"></span>
-          <h1>Flat Pass</h1>
+          <h1 class="orange-text">Flat Pass</h1>
+          <h5>A Web-based Password Manager</h5>
           <br>
         </div>
       </div>
@@ -31,12 +32,12 @@
               </div>
               <div class="alert alert-warning" ng-show="showError"> {{error.message}}</div>
               <div class="form-group">
-                <label for="Master Password">Password</label>
-                <input type="password" placeholder="Enter Password" class="form-control" ng-model="password" required/>
+                <label for="Master Password"> Master Password</label>
+                <input type="password" placeholder="Master Password" class="form-control" ng-model="password" required/>
               </div>
               <div class="alert alert-danger" ng-show="showErrorKey">{{message}}</div>
               <span class="input-group-btn text-left">
-                <button class="btn btn-default outline-button-primary" type="button" ng-click="create()">Create</button>
+                <button class="btn btn-default outline-button-alternate" type="button" ng-click="create()">Create</button>
               </span>
               <span class="input-group-btn text-right">
                 <button class="btn btn-default outline-button-primary" type="submit" ng-click="unlock()">Unlock</button>
@@ -69,16 +70,17 @@
                 </tr>
               </tbody>
             </table>
-
             <span class="input-group-btn text-center">
               <button class="btn btn-default outline-button-primary btn-block" type="button" ng-click="toggleAddAccount()">Add Account</button>
             </span>
+            <!-- <a id="middle"></a> -->
             <br>
+            <h4 class="text-center">Hit <span class="nuke-in-span">NUKE!</span> to end "session".</h4>
             <span class="input-group-btn text-center">
               <button class="btn btn-default outline-button-danger btn-block" type="submit" ng-click="reload()">NUKE!</button>
             </span>
             <br>
-            <p class="text-center nuke-text">(Don't worry, <span class="nuke-in-span">NUKE!</span> will not delete your data...go ahead we know you want to press it 😋)</p>
+            <p class="text-center nuke-text">(Don't worry, <span class="nuke-in-span">NUKE!</span> will not delete your data...go ahead we know you want to push it 😋)</p>
             <hr>
           </div>
         </div>
@@ -89,7 +91,7 @@
       <div class="row">
         <div class="col col-xs-2"></div>
           <div class="col-xs-8" ng-show="showForm">
-            <h4 class="text-center">Enter login details and hit save</h4>
+            <button class="btn btn-default text-left"><span class="glyphicon glyphicon-menu-left"></span></button><h4 class="text-center">Enter login details and hit save...</h4>
             <form>
               <div class="form-group top-buffer">
                 <label for="website" class="control-label">Website</label>
@@ -103,8 +105,9 @@
                 <label for="account-password">Password</label>
                 <input type="password" placeholder="Enter Password" class="form-control" ng-model="acctPassword" required/>
               </div>
-              <span class="input-group-btn text-right">
-                <button class="btn btn-default outline-button-primary" type="submit" ng-click="saveInfo()">Save</button>
+              <br>
+              <span class="input-group-btn">
+                <button class="btn btn-default btn-block outline-button-primary" type="submit" ng-click="saveInfo()">Save</button>
               </span>
               <hr>
             </form>
