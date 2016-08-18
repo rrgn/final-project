@@ -22,15 +22,16 @@ A web-based password manager that saves your data. Built using the MEAN stack, a
   * Crypto
   * Mongoose
   * Express
-  * body-parser
+  * Body-Parser
 
-## Change or Functionality to be implemented
+## Change or Functionality for future implementation.
 1. Ability to delete a specific login from the database.
-2. Make a Flat Pass native mobile app.
+2. Ability to delete user information from the database.
+3. Better form validation.
 
-## Authors
+## Author
 
-* Regan Co - [rrgn](https://github.com/rrgn)
+* [Regan Co](https://github.com/rrgn)
 
 ## Screenshots
 

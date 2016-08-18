@@ -10,18 +10,18 @@ app.controller('MainController', function($scope, open, sendData, $http, $timeou
     };
     open.openSesame(loginData).success(function(data) {
       $scope.data = data;
-      console.log(data);
+      // console.log(data);
       if (data === 'no data to show') {
         $scope.showTable = false;
       } else {
         $scope.showTable = true;
-        $location.hash('bottom');
+        $location.hash('middle');
         $anchorScroll();
       }
     }).error(function(error) {
       $scope.message = error.message;
       $scope.showErrorKey = true;
-      console.log('error', $scope.message);
+      // console.log('error', $scope.message);
       $timeout(function() {
         $scope.showErrorKey = false;
       }, 2500);
@@ -34,14 +34,14 @@ app.controller('MainController', function($scope, open, sendData, $http, $timeou
       email: $scope.email,
       mPassword: $scope.password
     };
-    console.log(createData);
+    // console.log(createData);
     $http.post('/create', createData).success(function(data) {
       // console.log(data);
       $scope.showForm = true;
       $location.hash('bottom');
       anchorScroll();
     }).error(function(error) {
-      console.log('this is error', error);
+      // console.log('this is error', error);
       $scope.error = error;
       var status = error.status;
       if(status === 'fail') {
@@ -52,6 +52,12 @@ app.controller('MainController', function($scope, open, sendData, $http, $timeou
         }, 2500);
       }
     });
+  };
+
+  $scope.hideForm = function() {
+    $scope.showForm = false;
+    $location.hash('middle');
+    anchorScroll();
   };
 
   $scope.saveInfo = function() {
@@ -66,6 +72,7 @@ app.controller('MainController', function($scope, open, sendData, $http, $timeou
     };
     $location.hash('middle');
     $anchorScroll();
+    
     sendData.userInfo(userData).success(function() {
       $scope.unlock();
     });
@@ -79,7 +86,7 @@ app.controller('MainController', function($scope, open, sendData, $http, $timeou
     $scope.website = '';
     $scope.username = '';
     $scope.acctPassword = '';
-    $location.hash('middle');
+    $location.hash('bottom');
     $anchorScroll();
   };
 

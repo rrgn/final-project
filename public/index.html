@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
-    <script src="angular.js"></script>
+    <link rel="stylesheet" href="animate.css">
     <title>Flat Pass</title>
   </head>
 
@@ -14,7 +14,7 @@
         <div class="col col xs-12 text-center">
           <br>
           <span class="glyphicon glyphicon-lock lock"></span>
-          <h1 class="orange-text">Flat Pass</h1>
+          <h1 class="orange-text animated bounceIn">Flat Pass</h1>
           <h5>A Web-based Password Manager</h5>
           <br>
         </div>
@@ -51,10 +51,10 @@
       <div class="row">
         <div class="col col-xs-2"></div>
         <div class="col col-xs-8">
-          <div class="table-responsive" ng-show="showTable">
+          <div class="table-responsive animated bounceInRight" ng-show="showTable">
             <hr>
             <a id="middle"></a>
-            <table class="table table-responsive">
+            <table class="table table-responsive tb-handle">
               <thead>
                 <tr>
                   <th>Website</th>
@@ -64,16 +64,15 @@
               </thead>
               <tbody ng-repeat="thing in data track by $index">
                 <tr>
-                  <td>{{thing.website}}</td>
-                  <td>{{thing.username}}</td>
-                  <td>{{thing.acctPassword}}</td>
+                  <td ng-class-odd="'blue-text'" ng-class-even="'grey-text'">{{thing.website}}</td>
+                  <td ng-class-odd="'blue-text'" ng-class-even="'grey-text'">{{thing.username}}</td>
+                  <td ng-class-odd="'blue-text'" ng-class-even="'grey-text'">{{thing.acctPassword}}</td>
                 </tr>
               </tbody>
             </table>
             <span class="input-group-btn text-center">
-              <button class="btn btn-default outline-button-primary btn-block" type="button" ng-click="toggleAddAccount()">Add Account</button>
+              <label class="btn btn-default outline-button-primary btn-block" type="button" ng-click="toggleAddAccount()">Add Account</label>
             </span>
-            <!-- <a id="middle"></a> -->
             <br>
             <h4 class="text-center">Hit <span class="nuke-in-span">NUKE!</span> to end "session".</h4>
             <span class="input-group-btn text-center">
@@ -82,6 +81,7 @@
             <br>
             <p class="text-center nuke-text">(Don't worry, <span class="nuke-in-span">NUKE!</span> will not delete your data...go ahead we know you want to push it 😋)</p>
             <hr>
+            <br>
           </div>
         </div>
         <div class="col col-xs-2"></div>
@@ -89,9 +89,12 @@
 
       <!--add login form start -->
       <div class="row">
-        <div class="col col-xs-2"></div>
-          <div class="col-xs-8" ng-show="showForm">
-            <button class="btn btn-default text-left"><span class="glyphicon glyphicon-menu-left"></span></button><h4 class="text-center">Enter login details and hit save...</h4>
+        <div class="col col-xs-2">
+        </div>
+          <div class="col-xs-8 animated fadeIn" ng-show="showForm">
+            <button class="btn btn-default text-left back-button" type="button" ng-click="hideForm()">Back</button>
+            <h4 class="text-center login-text">Enter login details and hit save...</h4>
+            <br>
             <form>
               <div class="form-group top-buffer">
                 <label for="website" class="control-label">Website</label>
@@ -117,7 +120,7 @@
         </div>
     </div> <!-- container end -->
     <script src="jquery.js"></script>
-
+    <script src="angular.js"></script>
     <script src="script.js"></script>
 
   </body>

@@ -5,9 +5,8 @@
 .lock {
   margin-top: 7%;
   font-size: 200px;
-  margin-bottom: 2%;
   color: #3498DB;
-  /*color: white;*/
+
 }
 
 .jumbotron {
@@ -59,8 +58,8 @@ h1, h4, h5 {
 
 .outline-button-alternate:hover {
   color: white;
-  background-color: #F1C40F;
-  border-color: #F1C40F;
+  background-color: #E67E22;
+  border-color: #E67E22;
 }
 
 .outline-button-danger {
@@ -92,6 +91,30 @@ h1, h4, h5 {
 
 .light-grey-text {
   color: #ECF0F1
+}
+
+.grey-text {
+  color: #95A5A6;
+}
+
+.back-button {
+  color: #E67E22;
+  outline: #ffffff;
+  background-color: transparent;
+  border-color: #E67E22;
+  float: left;
+  margin-top: 0.5%;
+}
+
+.back-button:hover {
+  color: white;
+  outline: #ffffff;
+  background-color: #E67E22;
+  border: 0;
+}
+
+.tb-handle {
+  cursor: default;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
